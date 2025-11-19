@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites - DOT AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header></header>
+
+    <main class="container fade-in" style="margin-top: 2rem;">
+        <h1>My Favorites</h1>
+        <p class="text-secondary mb-4">Images you have liked.</p>
+        <div id="favGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"></div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        Auth.requireAuth();
+        const gallery = Store.get('dotai_gallery_db', []);
+        const favs = gallery.filter(img => img.likes > 0); 
+        UI.renderGallery(favs, 'favGrid');
+    </script>
+</body>
+</html>
